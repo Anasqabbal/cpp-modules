@@ -5,7 +5,7 @@ void ClapTrap::operator=(const ClapTrap &obj)
     if (&obj != &(*this))
     {
         this->name = obj.name;
-        this->AttPoints = obj.AttPoints;
+        this->AttDmg = obj.AttDmg;
         this->HitPoints = obj.HitPoints;
         this->EnePoints = obj.EnePoints;
     }
@@ -17,7 +17,7 @@ ClapTrap::ClapTrap(void)
     this->name = "default";
     EnePoints = 10;
     HitPoints = 10;
-    AttPoints = 0;
+    AttDmg = 0;
 }
 
 ClapTrap::ClapTrap(std::string name)
@@ -26,7 +26,7 @@ ClapTrap::ClapTrap(std::string name)
     this->name = name;
     EnePoints = 10;
     HitPoints = 10;
-    AttPoints = 0;
+    AttDmg = 0;
 }
 
 ClapTrap::~ClapTrap(void)
@@ -41,10 +41,10 @@ void ClapTrap::attack(const std::string& target)
         std::cout << "Energy points is not enough" << std::endl;
         return ;
     }
-    std::cout << "ClapTrap " << this->name << " attacks " << target << ", causing " << 1 << " points of damage!" << std::endl;
+    std::cout << "ClapTrap " << this->name << " attacks " << target << ", causing " << AttDmg << " points of damage!" << std::endl;
     EnePoints--;
     HitPoints--;
-    AttPoints++;
+    AttDmg++;
 }
 void ClapTrap::beRepaired(unsigned int amount)
 {

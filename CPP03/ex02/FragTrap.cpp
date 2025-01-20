@@ -6,7 +6,7 @@ FragTrap::FragTrap(std::string name)
     std::cout << "FragTrap Paremeterized Constructor called" << std::endl;
     this->name = name;
     EnePoints = 100;
-    AttPoints = 30;
+    AttDmg = 30;
 }
 
 FragTrap::FragTrap(void)
@@ -14,7 +14,7 @@ FragTrap::FragTrap(void)
     std::cout << "FragTrap Default Constructor called" << std::endl; 
     name = "Default";
     EnePoints = 100;
-    AttPoints = 30;
+    AttDmg = 30;
 }
 
 FragTrap::~FragTrap(void)
@@ -24,7 +24,7 @@ FragTrap::~FragTrap(void)
 
 void    FragTrap::operator=(const FragTrap &obj)
 {
-    this->AttPoints = obj.AttPoints;
+    this->AttDmg = obj.AttDmg;
     this->EnePoints = obj.EnePoints;
     this->name = obj.name;
 }
@@ -39,7 +39,7 @@ void FragTrap::attack(const std::string& target)
     std::cout << "FragTrap " << this->name << " attacks " << target << ", causing " << 1 << " points of damage!" << std::endl;
     EnePoints--;
     HitPoints--;
-    AttPoints++;
+    AttDmg++;
 }
 
 void FragTrap::highFivesGuys(void)

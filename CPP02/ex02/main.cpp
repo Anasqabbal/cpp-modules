@@ -6,7 +6,7 @@ int main()
 {
 	// Fixed const b( 1);
 	// Fixed const c( 10 );
-	Fixed a(0);
+	Fixed a(21.1f);
 	Fixed const d(Fixed(5.05f) * Fixed( 2 ));
 
 

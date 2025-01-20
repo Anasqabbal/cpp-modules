@@ -8,7 +8,7 @@ protected:
     std::string name;
     int         HitPoints;
     int         EnePoints;
-    int         AttPoints;
+    int         AttDmg;
 
 public:
     ClapTrap(void); /*OCCF*/

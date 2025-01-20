@@ -35,61 +35,71 @@ Fixed::Fixed(const int number)
 	fpv = number << nfb;
 }
 
-static void IntToBinary(int nb, std::string &Intnb)
-{
-	int i;
-	int sign = 1;
+// static void reverse_string(std::string &str)
+// {
+// 	std::string NewStr;
+// 	int i = 0;
 
-	sign *= nb < 0 ? -1 : 1;
-	nb *= nb < 0 ? -1 : 1;
-	Intnb.erase();
-	while(nb && Intnb.size() != 22)
-	{
-		Intnb += nb % 2  == 1 ? '1' : '0';
-		nb /= 2;
-	}
-	for (i = Intnb.size(); (i < 23); i++)
-		Intnb += '0';
-	for (int i = 0; Intnb[i]; i++)
-		nb += Intnb[i] == '1' ? pow(2, i) : 0;
-	Intnb += sign == -1 ? '1' : '0';
-}
+// 	for (i = (str.size()) - 1; i >= 0; i--)
+// 		NewStr += str[i];
+// 	NewStr += '\0';
+// 	str.swap(NewStr);
+// }
 
-static void DecToBinary(int nb, std::string &Frcpart, int nfb)
-{
-	nb = roundf(nb);
-	float fl = nb * pow(10, (int)Frcpart.size() * -1);
+// static void IntToBinary(int nb, std::string &Intnb)
+// {
+// 	int i;
+// 	int sign = 1;
 
-	Frcpart.clear();
-	for (int i = nfb; (fl != 0 && i); i--)
-	{
-		fl *= 2.0f;
-		if (fl >= 1)
-		{
-			Frcpart += '1';
-			fl -= 1.0f;
-		}
-		else
-			Frcpart += '0';
-	}
-}
+// 	sign *= nb < 0 ? -1 : 1;
+// 	nb *= nb < 0 ? -1 : 1;
+// 	Intnb.erase();
+// 	while(nb && Intnb.size() != 22)
+// 	{
+// 		Intnb += nb % 2  == 1 ? '1' : '0';
+// 		nb /= 2;
+// 	}
+// 	for (i = Intnb.size(); (i < 23); i++)
+// 		Intnb += '0';
+// 	for (int i = 0; Intnb[i]; i++)
+// 		nb += Intnb[i] == '1' ? pow(2, i) : 0;
+// 	Intnb += sign == -1 ? '1' : '0';
+// }
 
-static float GetValueAsFloat(std::string bin, int bits, int nfb)
-{
-	float value;
-	int i;
+// static void DecToBinary(int nb, std::string &Frcpart, int nfb)
+// {
+// 	float fl = nb * pow(10, (int)Frcpart.size() * -1);
+// 	// float v = 0.0f;
+// 	Frcpart.clear();
+// 	for (int i = nfb; (fl != 0 && i); i--)
+// 	{
+// 		fl *= 2.0f;
+// 		if (fl >= 1)
+// 		{
+// 			Frcpart += '1';
+// 			fl -= 1.0f;
+// 		}
+// 		else
+// 			Frcpart += '0';
+// 	}
+// }
 
-	value = 0;
-	for(i = 0; i < nfb; i++)
-		value += bin[i] == '1' ? pow(2, ((i + 1) * -1)) : 0;
-	for (int j = 0; j < (bits - nfb - 1); j++)
-		value += bin[i++] == '1' ? pow(2, j) : 0;
-	if (bin[31] == '1')
-		return (value * -1);
-	return (value);
-}
+// static float GetValueAsFloat(std::string bin, int bits, int nfb)
+// {
+// 	float value;
+// 	int i;
 
-static int	StoreValueAsInt(std::string bin, int bits)
+// 	value = 0;
+// 	for(i = 0; i < nfb; i++)
+// 		value += bin[i] == '1' ? pow(2, ((i + 1) * -1)) : 0;
+// 	for (int j = 0; j < (bits - nfb - 1); j++)
+// 		value += bin[i++] == '1' ? pow(2, j) : 0;
+// 	if (bin[31] == '1')
+// 		return (value * -1);
+// 	return (value);
+// }
+
+int	StoreValueAsInt(std::string bin, int bits)
 {
 	int value;
 
@@ -101,35 +111,40 @@ static int	StoreValueAsInt(std::string bin, int bits)
 	return (value);
 }
 
-static void to_binary(int tm, std::string &bin)
-{
-	int sign;
-	int i;
+// static void to_binary(int tm, std::string &bin)
+// {
+// 	int sign;
+// 	int i;
 
-	sign = tm < 0 ? -1 : 1;
-	bin.clear();
-	for (i = 0; (i < 31); i++)
-	{
-		bin += tm % 2 == 1 ? '1' : '0';
-		tm /= 2;
-	}
-	bin += sign == -1 ? '1' : '0';
-}
+// 	sign = tm < 0 ? -1 : 1;
+// 	bin.clear();
+// 	for (i = 0; (i < 31); i++)
+// 	{
+// 		bin += tm % 2 == 1 ? '1' : '0';
+// 		tm /= 2;
+// 	}
+// 	bin += sign == -1 ? '1' : '0';
+// }
 
 Fixed::Fixed(const float number)
 {
-	std::ostringstream str;
-	std::string Intpart;
-	std::string Frcpart;
+	// // int i = 0;
+	// // int find = 0;
+	// // float an = 0;
+	// std::ostringstream str;
+	// std::string Intpart;
+	// std::string Frcpart;
 
-	str << number;
-	Frcpart = str.str();
-	Intpart = str.str();
-	Intpart = Intpart.erase(Intpart.find('.', 0));
-	Frcpart = Frcpart.substr(Frcpart.find('.', 0) + 1);
-	IntToBinary(std::atoi(Intpart.c_str()), Intpart);
-	DecToBinary(std::atoi(Frcpart.c_str()), Frcpart, nfb);
-	fpv = StoreValueAsInt(Frcpart + Intpart, 32);
+	// std::cout << "Float constructor called" << std::endl;
+	// str << number;
+	// Frcpart = str.str();
+	// Intpart = str.str();
+	// Intpart = Intpart.erase(Intpart.find('.', 0));
+	// Frcpart = Frcpart.substr(Frcpart.find('.', 0) + 1);
+	// DecToBinary(std::atoi(Frcpart.c_str()), Frcpart, nfb);
+	// IntToBinary(std::atoi(Intpart.c_str()), Intpart);
+	// fpv = StoreValueAsInt(Frcpart + Intpart, 32);
+	fpv = roundf(number * 256);
 }
 
 int	Fixed::toInt(void) const
@@ -139,12 +154,12 @@ int	Fixed::toInt(void) const
 
 float Fixed::toFloat(void) const
 {
-	float	val;
-	std::string bin;
-
-	to_binary(fpv, bin);
-	val = GetValueAsFloat(bin, 32, nfb);
-    return (val);
+	// float	val;
+	// std::string bin;
+	
+	// to_binary(fpv, bin);
+	// val = GetValueAsFloat(bin, 32, nfb);
+    return (float(fpv) / 256);
 }
 
 std::ostream &operator<< (std::ostream &output, const Fixed &obj)
@@ -152,6 +167,7 @@ std::ostream &operator<< (std::ostream &output, const Fixed &obj)
 	output << obj.toFloat();
 	return (output);
 }
+
 
 int Fixed::getRawBits( void ) const
 {
@@ -162,6 +178,7 @@ void Fixed::setRawBits( int const raw )
 {
 	fpv = raw;
 }
+
 
 /* overload 6 comparison operators */
 

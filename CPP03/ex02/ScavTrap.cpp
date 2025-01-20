@@ -6,7 +6,7 @@ ScavTrap::ScavTrap(std::string name)
     std::cout << "ScavTrap Paremeterized Constructor called" << std::endl;
     this->name = name;
     EnePoints = 50;
-    AttPoints = 20;
+    AttDmg = 20;
 }
 
 ScavTrap::ScavTrap(void)
@@ -14,7 +14,7 @@ ScavTrap::ScavTrap(void)
     std::cout << "ScavTrap Default Constructor called" << std::endl; 
     name = "Default";
     EnePoints = 50;
-    AttPoints = 20;
+    AttDmg = 20;
 }
 
 ScavTrap::~ScavTrap(void)
@@ -26,7 +26,7 @@ void    ScavTrap::operator=(const ScavTrap &obj)
 {
     if (&obj == this)
         return ;
-    this->AttPoints = obj.AttPoints;
+    this->AttDmg = obj.AttDmg;
     this->HitPoints = obj.HitPoints;
     this->EnePoints = obj.EnePoints;
     this->name = obj.name;
@@ -42,7 +42,7 @@ void ScavTrap::attack(const std::string& target)
     std::cout << "ScavTrap " << this->name << " attacks " << target << ", causing " << 1 << " points of damage!" << std::endl;
     EnePoints--;
     HitPoints--;
-    AttPoints++;
+    AttDmg++;
 }
 
 void ScavTrap::guardGate(void)
