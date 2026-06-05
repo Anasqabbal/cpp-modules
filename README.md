@@ -91,8 +91,6 @@ cd CPP
 - **Problem Solved:** Applying complex, specific algorithmic logic to practical parsing and mathematical tasks.
 - **Implemented Concept:** A Bitcoin exchange rate calculator, Reverse Polish Notation evaluator, and the Ford-Johnson sorting algorithm.
 
-- add a file to this file
-
 ## 🛠️ Usage
 Each module has its own directory (e.g., `CPP-00`, `CPP-01`). Inside each module, there are specific exercises. 
 Navigate to the specific exercise directory, compile, and run the basic tests using the `Makefile` provided in that directory:
